@@ -25,7 +25,6 @@ mixin _$HomeState {
   TaskPriority? get selectedFilterPriority =>
       throw _privateConstructorUsedError;
   String? get currentTaskId => throw _privateConstructorUsedError;
-  int? get expandedIndex => throw _privateConstructorUsedError;
   HomeTabs get currentTab => throw _privateConstructorUsedError;
 
   /// Create a copy of HomeState
@@ -49,7 +48,6 @@ abstract class $HomeStateCopyWith<$Res> {
       TaskPriority selectedPriority,
       TaskPriority? selectedFilterPriority,
       String? currentTaskId,
-      int? expandedIndex,
       HomeTabs currentTab});
 }
 
@@ -76,7 +74,6 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? selectedPriority = null,
     Object? selectedFilterPriority = freezed,
     Object? currentTaskId = freezed,
-    Object? expandedIndex = freezed,
     Object? currentTab = null,
   }) {
     return _then(_value.copyWith(
@@ -112,10 +109,6 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.currentTaskId
           : currentTaskId // ignore: cast_nullable_to_non_nullable
               as String?,
-      expandedIndex: freezed == expandedIndex
-          ? _value.expandedIndex
-          : expandedIndex // ignore: cast_nullable_to_non_nullable
-              as int?,
       currentTab: null == currentTab
           ? _value.currentTab
           : currentTab // ignore: cast_nullable_to_non_nullable
@@ -141,7 +134,6 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       TaskPriority selectedPriority,
       TaskPriority? selectedFilterPriority,
       String? currentTaskId,
-      int? expandedIndex,
       HomeTabs currentTab});
 }
 
@@ -166,7 +158,6 @@ class __$$HomeStateImplCopyWithImpl<$Res>
     Object? selectedPriority = null,
     Object? selectedFilterPriority = freezed,
     Object? currentTaskId = freezed,
-    Object? expandedIndex = freezed,
     Object? currentTab = null,
   }) {
     return _then(_$HomeStateImpl(
@@ -202,10 +193,6 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value.currentTaskId
           : currentTaskId // ignore: cast_nullable_to_non_nullable
               as String?,
-      expandedIndex: freezed == expandedIndex
-          ? _value.expandedIndex
-          : expandedIndex // ignore: cast_nullable_to_non_nullable
-              as int?,
       currentTab: null == currentTab
           ? _value.currentTab
           : currentTab // ignore: cast_nullable_to_non_nullable
@@ -226,7 +213,6 @@ class _$HomeStateImpl implements _HomeState {
       this.selectedPriority = TaskPriority.low,
       this.selectedFilterPriority,
       this.currentTaskId,
-      this.expandedIndex,
       this.currentTab = HomeTabs.all});
 
   @override
@@ -249,14 +235,12 @@ class _$HomeStateImpl implements _HomeState {
   @override
   final String? currentTaskId;
   @override
-  final int? expandedIndex;
-  @override
   @JsonKey()
   final HomeTabs currentTab;
 
   @override
   String toString() {
-    return 'HomeState(estate: $estate, message: $message, selectedDateTime: $selectedDateTime, selectedFilterDateTime: $selectedFilterDateTime, anySecondaryWidgetVisible: $anySecondaryWidgetVisible, selectedPriority: $selectedPriority, selectedFilterPriority: $selectedFilterPriority, currentTaskId: $currentTaskId, expandedIndex: $expandedIndex, currentTab: $currentTab)';
+    return 'HomeState(estate: $estate, message: $message, selectedDateTime: $selectedDateTime, selectedFilterDateTime: $selectedFilterDateTime, anySecondaryWidgetVisible: $anySecondaryWidgetVisible, selectedPriority: $selectedPriority, selectedFilterPriority: $selectedFilterPriority, currentTaskId: $currentTaskId, currentTab: $currentTab)';
   }
 
   @override
@@ -279,8 +263,6 @@ class _$HomeStateImpl implements _HomeState {
                 other.selectedFilterPriority == selectedFilterPriority) &&
             (identical(other.currentTaskId, currentTaskId) ||
                 other.currentTaskId == currentTaskId) &&
-            (identical(other.expandedIndex, expandedIndex) ||
-                other.expandedIndex == expandedIndex) &&
             (identical(other.currentTab, currentTab) ||
                 other.currentTab == currentTab));
   }
@@ -296,7 +278,6 @@ class _$HomeStateImpl implements _HomeState {
       selectedPriority,
       selectedFilterPriority,
       currentTaskId,
-      expandedIndex,
       currentTab);
 
   /// Create a copy of HomeState
@@ -318,7 +299,6 @@ abstract class _HomeState implements HomeState {
       final TaskPriority selectedPriority,
       final TaskPriority? selectedFilterPriority,
       final String? currentTaskId,
-      final int? expandedIndex,
       final HomeTabs currentTab}) = _$HomeStateImpl;
 
   @override
@@ -337,8 +317,6 @@ abstract class _HomeState implements HomeState {
   TaskPriority? get selectedFilterPriority;
   @override
   String? get currentTaskId;
-  @override
-  int? get expandedIndex;
   @override
   HomeTabs get currentTab;
 

@@ -279,10 +279,6 @@ class HomeBloc extends Cubit<HomeState> {
     }
   }
 
-  void expandItem(int index, bool expanded) {
-    emit(state.copyWith(expandedIndex: expanded ? index : null));
-  }
-
   Future<void> deleteTask(String taskId) async {
     emit(state.copyWith(estate: EHomeState.deleting));
     final response = await tasksRepo.deleteTask(taskId);

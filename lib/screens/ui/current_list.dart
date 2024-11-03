@@ -59,14 +59,7 @@ class CurrentList extends StatelessWidget {
                               ),
                             ),
                             child: ExpansionTile(
-                              initiallyExpanded: state.expandedIndex == index,
-                              onExpansionChanged: (expand) {
-                                if (state.estate == EHomeState.initial) {
-                                  context
-                                      .read<HomeBloc>()
-                                      .expandItem(index, expand);
-                                }
-                              },
+
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.r),
                               ),
@@ -355,7 +348,6 @@ class CurrentList extends StatelessWidget {
                       itemCount: snapshots.data != null
                           ? snapshots.data!.docs.length
                           : 0,
-                      physics: const NeverScrollableScrollPhysics(),
                     )
                   : Container(
                       height: MediaQuery.of(context).size.height * 0.8,

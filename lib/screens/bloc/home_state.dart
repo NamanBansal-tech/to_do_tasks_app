@@ -11,7 +11,6 @@ class HomeState with _$HomeState {
     @Default(TaskPriority.low) TaskPriority selectedPriority,
     TaskPriority? selectedFilterPriority,
     String? currentTaskId,
-    int? expandedIndex,
     @Default(HomeTabs.all) HomeTabs currentTab,
   }) = _HomeState;
 

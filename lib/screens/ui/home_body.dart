@@ -65,57 +65,59 @@ class HomeBody extends StatelessWidget {
           if (state.estate == EHomeState.added && state.message != null) {
             Fluttertoast.showToast(
                 msg: state.message!, backgroundColor: Colors.green);
+            context.read<HomeBloc>().getTaskStream();
             if (navigatorKey.currentContext != null) {
               Navigator.pop(navigatorKey.currentContext ?? context);
             }
           }
         },
-        child: ListView(
-          shrinkWrap: true,
+        child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: 24.w,
             vertical: 16.h,
           ),
-          children: [
-            SizedBox(
-              height: 20.h,
-            ),
-            CustomTextFormField(
-              onChanged: (val) {
-                context.read<HomeBloc>().searchItem(val);
-              },
-              controller: context.read<HomeBloc>().searchController,
-              labelText: AppStrings.search,
-              hintText: AppStrings.searchHint,
-              suffix: const Icon(Icons.search_rounded),
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            DefaultTabController(
-              length: HomeTabs.values.length,
-              child: TabBar(
-                onTap: (val) {
-                  context.read<HomeBloc>().updateCurrentTab(val);
-                },
-                physics: const NeverScrollableScrollPhysics(),
-                labelColor: Colors.blue,
-                indicatorColor: Colors.blueAccent,
-                tabs: const [
-                  Tab(
-                    text: AppStrings.all,
-                  ),
-                  Tab(
-                    text: AppStrings.pending,
-                  ),
-                  Tab(
-                    text: AppStrings.completed,
-                  ),
-                ],
+          child: Column(
+            children: [
+              SizedBox(
+                height: 20.h,
               ),
-            ),
-            const CurrentList(),
-          ],
+              CustomTextFormField(
+                onChanged: (val) {
+                  context.read<HomeBloc>().searchItem(val);
+                },
+                controller: context.read<HomeBloc>().searchController,
+                labelText: AppStrings.search,
+                hintText: AppStrings.searchHint,
+                suffix: const Icon(Icons.search_rounded),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              DefaultTabController(
+                length: HomeTabs.values.length,
+                child: TabBar(
+                  onTap: (val) {
+                    context.read<HomeBloc>().updateCurrentTab(val);
+                  },
+                  physics: const NeverScrollableScrollPhysics(),
+                  labelColor: Colors.blue,
+                  indicatorColor: Colors.blueAccent,
+                  tabs: const [
+                    Tab(
+                      text: AppStrings.all,
+                    ),
+                    Tab(
+                      text: AppStrings.pending,
+                    ),
+                    Tab(
+                      text: AppStrings.completed,
+                    ),
+                  ],
+                ),
+              ),
+              const Expanded(child: CurrentList()),
+            ],
+          ),
         ),
       ),
       floatingActionButton: ElevatedButton(
