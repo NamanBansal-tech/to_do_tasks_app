@@ -26,7 +26,10 @@ class CurrentList extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   ),
                 )
-              : snapshots.data != null && snapshots.data!.docs.isNotEmpty
+              : !snapshots.hasError &&
+                      snapshots.hasData &&
+                      snapshots.data != null &&
+                      snapshots.data!.docs.isNotEmpty
                   ? ListView.builder(
                       itemBuilder: (context, index) {
                         final item = TaskModel.fromJson(
@@ -59,7 +62,6 @@ class CurrentList extends StatelessWidget {
                               ),
                             ),
                             child: ExpansionTile(
-
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20.r),
                               ),
@@ -352,9 +354,11 @@ class CurrentList extends StatelessWidget {
                   : Container(
                       height: MediaQuery.of(context).size.height * 0.8,
                       alignment: Alignment.center,
-                      child: const Center(
+                      child: Center(
                         child: Text(
-                          AppStrings.noRecordFound,
+                          snapshots.hasError
+                              ? AppStrings.somethingWentWrong
+                              : AppStrings.noRecordFound,
                           textAlign: TextAlign.center,
                         ),
                       ),
