@@ -281,14 +281,25 @@ class HomeBloc extends Cubit<HomeState> {
 
   Future<void> deleteTask(String taskId) async {
     emit(state.copyWith(estate: EHomeState.deleting));
-    final response = await tasksRepo.deleteTask(taskId);
-    response.fold((l) {
-      emit(state.copyWith(estate: EHomeState.error, message: l));
+    final hasInternetConnection = await Utility.checkInternetConnection();
+    if (hasInternetConnection) {
+      final response = await tasksRepo.deleteTask(taskId);
+      response.fold((l) {
+        emit(state.copyWith(estate: EHomeState.error, message: l));
+        setToInitialState();
+      }, (r) {
+        emit(state.copyWith(estate: EHomeState.success, message: r));
+        setToInitialState();
+      });
+    } else {
+      emit(
+        state.copyWith(
+          estate: EHomeState.error,
+          message: AppStrings.noInternetConnection,
+        ),
+      );
       setToInitialState();
-    }, (r) {
-      emit(state.copyWith(estate: EHomeState.success, message: r));
-      setToInitialState();
-    });
+    }
   }
 
   void setToInitialState() {
